@@ -8,6 +8,7 @@ Complie Instruction:
 > - Type: flask run
 > - You should see something like this:<br>
 > <img width="350" src="https://github.com/floraazhang/Photoshare_BU_CS460_Database/raw/master/screenshot/run.png"/>
+> <br>
 > - Copy the URL and paste it to your web browser.
 > - You should now see the demo.
 
