@@ -11,7 +11,7 @@ Complie Instruction:
 > - Copy the URL and paste it to your web browser.
 > - You should now see the demo.
 
-<br><br><br>
+<br><br>
 
 <img src="https://github.com/floraazhang/Photoshare_BU_CS460_Database/raw/master/screenshot/1.png"/>
 <img src="https://github.com/floraazhang/Photoshare_BU_CS460_Database/raw/master/screenshot/2.png"/>
