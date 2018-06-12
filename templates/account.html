@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <title>Photoshare_HOME</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+  <style>
+  body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+  body, html {
+      height: 100%;
+      color: #777;
+      line-height: 1.8;
+  }
+  .centerVH {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+  }
+  </style>
+
+
+  <body>
+  <!-- Navbar (sit on top) -->
+    <div class="w3-top">
+    <div class="w3-bar" id="myNavbar">
+      <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+      <a href="/" class="w3-bar-item w3-button"><i class="fa fa-home"></i> HOME</a>
+      <a href="/account" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> MY ACCOUNT</a>
+      <a href="/photo" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> PHOTO</a>
+      <a href="/friend" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-address-book-o"></i> FRIEND</a>
+      </a>
+    </div>
+  </div>
+
+
+    
+    <div class="centerVH w3-content w3-container w3-padding-64" id="portfolio">
+      <h1 class="w3-center">Hi,
+        {% if userInfo %}
+          {{userInfo[3]}} {{userInfo[4]}}
+        {% endif %}
+      </h1>
+      <h3 class="w3-center">My contribution:
+        {% if userInfo %}
+          {{userInfo[8]}}
+        {% endif %}
+      </h1>
+      <p class="w3-center"><a href='/logout'>LOGOUT</a></p>
+    </div>
+
+
+
+
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
+
+  </body>
+</html>
+

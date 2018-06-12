@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <title>Register</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+  <style>
+  body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+  body, html {
+      height: 100%;
+      color: #777;
+      line-height: 1.8;
+  }
+  .centerVH {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+  }
+  </style>
+
+
+  <body>
+  <!-- Navbar (sit on top) -->
+    <div class="w3-top">
+    <div class="w3-bar" id="myNavbar">
+      <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+      <a href="/" class="w3-bar-item w3-button"><i class="fa fa-home"></i> HOME</a>
+      <a href="/account" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> MY ACCOUNT</a>
+      <a href="/photo" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> PHOTO</a>
+      <a href="/friend" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-address-book-o"></i> FRIEND</a>
+      </a>
+    </div>
+  </div>
+
+   <form action="/register/" method="POST"> 
+    <div class="centerVH w3-display-container w3-opacity-min">
+        <div class="w3-half"><input class="w3-input w3-border" type="text" placeholder="First Name" name="first"></div>
+        <div class="w3-half"><input class="w3-input w3-border" type="text" placeholder="Last Name" name="last"></div>
+        <input class="w3-input w3-border" type="text" placeholder="Email" name="email">
+        <input class="w3-input w3-border" type="text" placeholder="Date of Birth (format:1994-12-12)" required name="birth">
+        <input class="w3-input w3-border" type="text" placeholder="Hometown" required name="hometown">     
+        <input type="radio"  placeholder="Gender" name="gender" value = "Female">Female<br>
+        <input type="radio" placeholder="Gender" name="gender" value = "Male">Male<br>
+        <input type="radio" placeholder="Gender" name="gender" value = "Other">Other<br>
+        <input class="w3-input w3-border" type="password" placeholder="Password" required name="password"><br>
+        <button class="w3-button w3-black w3-right w3-section" type="submit">SIGN UP</button>
+     
+    </div>
+    </form>
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
+
+  </body>
+</html>

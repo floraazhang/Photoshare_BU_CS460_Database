@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <title>PHOTO</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+  <style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+    body, html {
+      height: 100%;
+      color: #777;
+      line-height: 1.8;
+    }
+    .album{
+      margin-top:85px;
+      margin-left:50px;
+      margin-right:50px;
+    }
+
+
+
+ </style>
+
+
+  <body>
+    <!-- Navbar (sit on top) -->
+    <div class="w3-top">
+    <div class="w3-bar" id="myNavbar">
+      <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+      <a href="/" class="w3-bar-item w3-button"><i class="fa fa-home"></i> HOME</a>
+      <a href="/account" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> MY ACCOUNT</a>
+      <a href="/photo" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> PHOTO</a>
+      <a href="/friend" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-address-book-o"></i> FRIEND</a>
+      </a>
+    </div>
+  </div>
+
+
+
+  <!-- For displaying photos -->
+  {% if photos %}
+  <div class="w3-row-padding w3-center" style="margin-top: 70px">
+    {% if title %}
+    <h1 class="w3-center">{{title}}</h1>
+    {% endif %}
+    <div class="album">
+      {% for photo in photos %}
+      <div class="w3-col m3">
+        <img src='data:image/png;base64, {{photo[0]}}' style="width:100%" class="w3-hover-opacity" alt={{photo[0]}} onclick="onClick(this)">
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+
+
+
+
+
+
+
+
+    <script>
+      // Modal Image Gallery
+      function onClick(element) {
+        document.getElementById("img01").src = element.src;
+        document.getElementById("modal01").style.display = "block";
+        var captionText = document.getElementById("caption");
+        captionText.innerHTML = element.alt;
+      }
+
+      // Change style of navbar on scroll
+      window.onscroll = function() {myFunction()};
+      function myFunction() {
+          var navbar = document.getElementById("myNavbar");
+          if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+              navbar.className = "w3-bar" + " w3-card-2" + " w3-animate-top" + " w3-white";
+          } else {
+              navbar.className = navbar.className.replace(" w3-card-2 w3-animate-top w3-white", "");
+          }
+      }
+
+      </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
+
+  </body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<title>HOME</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+<style>
+  body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+  body, html {
+    height: 100%;
+    color: #777;
+    line-height: 1.8;
+  }
+  .list1{
+    margin-top:100px;
+    margin-left:200px;
+    width: 400px;
+  }
+</style>
+
+
+<body>
+  <!-- Navbar (sit on top) -->
+  <div class="w3-top">
+    <div class="w3-bar" id="myNavbar">
+      <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+      <a href="/" class="w3-bar-item w3-button"><i class="fa fa-home"></i> HOME</a>
+      <a href="/account" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> MY ACCOUNT</a>
+      <a href="/photo" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> PHOTO</a>
+      <a href="/friend" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-address-book-o"></i> FRIEND</a>
+      </a>
+    </div>
+  </div>
+
+
+  <!-- ADD FRIENDS -->
+  <div class="list1">
+    <span class="w3-xlarge ">Add Some Friends:</span><br>
+    <ul class="w3-ul w3-card-4">
+    {% if strangers %}
+      {% for stranger in strangers %}
+        <form method="post" enctype="multipart/form-data" action='/friend'>
+          <li class="w3-padding-16">
+            <button onclick="this.parentElement.style.display='none'" class="w3-button w3-white w3-large w3-right" name="addFriend" value="{{stranger[0]}}" type="submit"><i class="fa fa-plus"></i></button> 
+            <span class="w3-large">{{stranger[3]}} {{stranger[4]}} </span><br>
+            <span>{{stranger[7]}}   {{stranger[6]}}   {{stranger[5]}}</span>
+          </li>
+        </form>
+      {% endfor %}
+    {% endif %}
+    </ul>
+  </div>
+
+
+  <!-- LIST FRIENDS -->
+  <div class="list1">
+    <span class="w3-xlarge ">My Friends:</span><br>
+    <ul class="w3-ul w3-card-4" style="margin-bottom: 100px">
+    {% if friends %}
+      {% for friend in friends %}
+          <li class="w3-padding-16">
+            <span class="w3-large">{{friend[1]}} {{friend[2]}} </span><br>
+            <span>{{friend[5]}}   {{friend[4]}}   {{friend[3]}}</span>
+          </li>
+      {% endfor %}
+    {% endif %}
+    </ul>
+  </div>
+
+
+
+  <script>
+      // Modal Image Gallery
+      function onClick(element) {
+        document.getElementById("img01").src = element.src;
+        document.getElementById("modal01").style.display = "block";
+        var captionText = document.getElementById("caption");
+        captionText.innerHTML = element.alt;
+      }
+
+      // Change style of navbar on scroll
+      window.onscroll = function() {myFunction()};
+      function myFunction() {
+        var navbar = document.getElementById("myNavbar");
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+          navbar.className = "w3-bar" + " w3-card-2" + " w3-animate-top" + " w3-white";
+        } else {
+          navbar.className = navbar.className.replace(" w3-card-2 w3-animate-top w3-white", "");
+        }
+      }
+
+
+  </script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
+
+</body>
+</html>
+

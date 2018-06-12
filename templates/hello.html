@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<title>HOME</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+<style>
+  body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+  body, html {
+    height: 100%;
+    color: #777;
+    line-height: 1.8;
+  }
+  h6{
+    font-size: 80%
+  }
+  .centerVH {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+  .background{
+    width: 100%;
+    height:100%;
+  }
+  .centerH{
+    position: relative;
+    left:43%;
+  }
+  .title {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+  .subtitle {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+  .w3-hover-opacity {cursor: pointer;}
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+  }
+  .createBtn{
+    left:50%;
+    width: 265px;
+  }
+  .createAlbum{
+    position: relative;
+    top: 20px;
+    left: 40px;
+  }
+  .uploadBtn{
+    position: relative;
+    width: 285px;
+    margin:10px;
+  }
+  select#soflow{
+   -webkit-appearance: button;
+   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+   background-position: 97% center;
+   background-repeat: no-repeat;
+   font-size: inherit;
+   overflow: hidden;
+   padding: 3px;
+   text-overflow: ellipsis;
+   /*white-space: nowrap;*/
+   width: 180px;
+ }
+ img {
+  display: block;
+  margin: auto;
+  width: 40%;
+}
+div.polaroid {
+  width: 80%;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 30px;
+}
+
+div.container {
+  text-align: center;
+  padding: 10px 20px;
+}
+.album{
+  padding: 10px;
+}
+.postBtn{
+  position: relative;
+  width: 280px;
+}
+.comment{
+  position: relative;
+  top: 20px;
+  left:13%;
+  margin-bottom: 50px
+}
+.oneComment{
+  position:relative;
+  width:280px;
+}
+.inputComment{
+  position: relative;
+  width:280px;
+}
+.tags{
+  margin-top: 10px;
+}
+.tag{
+  margin-bottom:10px;
+  margin-right: 5px
+}
+.likeBtn{
+  width: 100px;
+  height: 50px;
+}
+input[type=text] {
+    margin-top: 10px;
+    width: 200px;
+    height:30px;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white; 
+    padding: 12px 20px 12px 20px;
+}
+
+</style>
+
+
+<body>
+  <!-- Navbar (sit on top) -->
+  <div class="w3-top">
+    <div class="w3-bar" id="myNavbar">
+      <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+      <a href="/" class="w3-bar-item w3-button"><i class="fa fa-home"></i> HOME</a>
+      <a href="/account" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> MY ACCOUNT</a>
+      <a href="/photo" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> PHOTO</a>
+      <a href="/friend" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-address-book-o"></i> FRIEND</a>
+      <div style="margin-left: 10px; float: right;">
+        <form method="post" enctype="multipart/form-data" action='/album'>
+          <input type="text" name="searchTags" placeholder="Search Tags..">
+          <i class="fa fa-search" style="margin-right: 10px; margin-left: 10px" type="submit"></i>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- First Parallax Image with Logo Text -->
+  <div class="background">
+    <div class="centerVH w3-display-container w3-opacity-min w3-display-middle" style="white-space:nowrap;">
+      <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">WELCOME <span class="w3-hide-small">TO</span> PHOTOSHARE</span>
+    </div>
+  </div>
+
+
+
+<!-- Public Page -->
+<div class="w3-content w3-container w3-padding-64">
+  <h1 class="w3-center">EXPLORE PHOTOS</h1>
+  <h4 class="w3-center">ALL PHOTOS</h4><br>
+  <div class="w3-row-padding w3-center w3-section">
+    {% if allphotos %}
+    {% for photo in allphotos %}
+    <div class="w3-col m4 ">
+      <h5>{{photo[2]}}</h5>
+      <h6>{{photo[4]}} {{photo[5]}} -- {{photo[6]}}</h6>
+
+      <img src='data:image/png;base64, {{photo[0]}}' style="width:100%" class="w3-hover-opacity" alt={{photo[2]}} onclick="onClick(this)">
+
+      <!-- tag -->
+      <div class="w3-white">
+        <div class="w3-container w3-white tags">
+          <form method="post" enctype="multipart/form-data" action='/album'>
+            {% if tags %}
+            {% for tag in tags %}
+            {% if photo[1]==tag[1] %}
+
+            <button class="w3-tag w3-light-grey w3-medium w3-hover-opacity tag" name="clickedTag" value="{{tag[0]}}" type="submit">{{tag[0]}}</button>
+
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+          </form>
+        </div>
+      </div>
+
+
+
+      <!-- comment and like -->
+      <div style="margin-bottom: 100px">
+        <!-- comment -->
+        <div class="dropdown w3-dropdown-hover" style="float:left">
+          <div class="w3-button w3-black"><b>Comment</b></div>
+          <div class="w3-dropdown-content w3-border" style="width:390px">
+            <div class="comment">
+              <div class="w3-row ">
+                <!-- existed comment -->
+                {% if allcomments %}
+                {% for comment in allcomments %}
+                {% if comment[3] == photo[1] %}
+                <div class="oneComment">
+                  <h3 class="w3-left">{{comment[0]}}  <span class="w3-opacity w3-small">{{comment[2]}}</span></h3><br/>
+                  <h5 ><em>{{comment[1]}}</em></h5>
+                </div>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+
+                <!-- post -->
+                <form method="post" enctype="multipart/form-data" action='/'>
+                  <p><input class="w3-input w3-padding-5 inputComment w3-left" type="text" placeholder="Add a comment" name="comment"></p>
+                  <p><button class="w3-button w3-light-grey w3-section postBtn w3-left" type="submit" name='clickedPost' value={{photo[1]}}>POST</button></p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- like function -->
+        <div class="dropdown w3-dropdown-hover" style="float:right">
+          <div>
+            <form method="post" enctype="multipart/form-data" action='/'>
+              <button type="submit" name="likes" value={{photo[1]}} style="width:100px;height: 44px;background: white" class="w3-border"><i class="fa fa-thumbs-up"></i> Like <span class="w3-tag w3-white"> {{photo[3]}}</span></button>
+            </form>
+          </div>
+
+          <div class="w3-dropdown-content w3-border" style="width:300px">
+            <ul class="w3-ul w3-card-4">
+              <!-- existed comment -->
+              {% if alllikes %}
+              {% for like in alllikes %}
+              {% if like[0] == photo[1] %}
+              <li class="w3-padding-16">
+                <span class="w3-large">{{like[1]}} {{like[2]}} </span><br>
+                <span>{{like[3]}}</span>
+              </li>
+              {% endif %}
+              {% endfor %}
+              {% endif %}
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
+
+
+
+
+
+
+  <!-- YOU MAY ALSO LIKE -->
+  <h4 class="w3-center" style="margin-top: 100px">YOU MAY ALSO LIKE</h4><br>
+  <div class="w3-row-padding w3-center w3-section">
+    {% if mayLikePhotos %}
+    {% for photo in mayLikePhotos %}
+    <div class="w3-col m4 ">
+      <h5>{{photo[1]}}</h5>
+
+      <img src='data:image/png;base64, {{photo[0]}}' style="width:100%" class="w3-hover-opacity" alt={{photo[2]}} onclick="onClick(this)">
+
+
+      <!-- tag -->
+      <div class="w3-white">
+        <div class="w3-container w3-white tags">
+          <form method="post" enctype="multipart/form-data" action='/album'>
+            {% if tags %}
+            {% for tag in tags %}
+            {% if photo[3]==tag[1] %}
+
+            <button class="w3-tag w3-light-grey w3-medium w3-hover-opacity tag" name="clickedTag" value="{{tag[0]}}" type="submit">{{tag[0]}}</button>
+
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+          </form>
+        </div>
+      </div>
+
+
+      <!-- comment and like -->
+      <div style="margin-bottom: 100px">
+        <!-- comment -->
+        <div class="dropdown w3-dropdown-hover" style="float:left">
+          <div class="w3-button w3-black"><b>Comment</b></div>
+          <div class="w3-dropdown-content w3-border" style="width:390px">
+            <div class="comment">
+              <div class="w3-row ">
+                <!-- existed comment -->
+                {% if allcomments %}
+                {% for comment in allcomments %}
+                {% if comment[3] == photo[3] %}
+                <div class="oneComment">
+                  <h3 class="w3-left">{{comment[0]}}  <span class="w3-opacity w3-small">{{comment[2]}}</span></h3><br/>
+                  <h5 style="float:left"><em>{{comment[1]}}</em></h5>
+                </div>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+
+                <!-- post -->
+                <form method="post" enctype="multipart/form-data" action='/'>
+                  <p><input class="w3-input w3-padding-5 inputComment w3-left" type="text" placeholder="Add a comment" name="comment"></p>
+                  <p><button class="w3-button w3-light-grey w3-section postBtn w3-left" type="submit" name='clickedPost' value={{photo[1]}}>POST</button></p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- like function -->
+        <div class="dropdown w3-dropdown-hover" style="float:right">
+          <div>
+            <form method="post" enctype="multipart/form-data" action='/'>
+              <button type="submit" name="likes" value={{photo[1]}} style="width:100px;height: 44px;background: white" class="w3-border"><i class="fa fa-thumbs-up"></i> Like <span class="w3-tag w3-white"> {{photo[2]}}</span></button>
+            </form>
+          </div>
+
+          <div class="w3-dropdown-content w3-border" style="width:300px">
+            <ul class="w3-ul w3-card-4">
+              <!-- existed comment -->
+              {% if alllikes %}
+              {% for like in alllikes %}
+              {% if like[0] == photo[3] %}
+              <li class="w3-padding-16">
+                <span class="w3-large">{{like[1]}} {{like[2]}} </span><br>
+                <span>{{like[3]}}</span>
+              </li>
+              {% endif %}
+              {% endfor %}
+              {% endif %}
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
+</div>
+
+<!-- Modal for full size images on click-->
+<div id="modal01" class="w3-modal w3-white" onclick="this.style.display='none'">
+
+  <img id="img01" class="img w3-animate-zoom w3-transparent">
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="w3-content w3-container w3-padding-64">
+  <h1 class="w3-center">EXPLORE ALBUMS</h1>
+  <h4 class="w3-center">ALL ALBUMS</h4><br>
+  <!-- Displaying album -->
+  <div class="w3-row-padding w3-center w3-section">
+    {% if allalbums %}
+    {% for album in allalbums %}
+    <div class="w3-col m3 polaroid">
+      <h5>{{album[1]}}</h5>
+      <form method="post" enctype="multipart/form-data" action="/album">
+        <button style="background-color: white" type="submit" name="clickedAlbum" value={{album[0]}}>
+          <img src='data:image/png;base64, {{album[2]}}' style="width:80%; margin-bottom: 60px" class="w3-hover-opacity">
+        </button>
+      </form>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+  </div>
+</div>
+
+<div class="w3-content w3-container w3-padding-64">
+  <h1 class="w3-center">EXPLORE USERS</h1>
+  <h4 class="w3-center">TOP 10 CONTRIBUTORS</h4><br>
+  <ul class="w3-ul w3-card-4, w3-center">
+    {% if topTenUsers %}
+    {% for user in topTenUsers %}
+    <li class="w3-padding-16">
+      <span class="w3-large">{{user[3]}} {{user[4]}} </span><br>
+      <span>{{user[1]}}   {{user[7]}}   {{user[6]}}</span><br>
+      <span>Contribution: {{user[8]}}</span>
+    </li>
+    {% endfor %}
+    {% endif %}
+  </ul>
+</div>
+
+
+<div class="w3-content w3-container w3-padding-64">
+  <h1 class="w3-center">EXPLORE TAGS</h1>
+  <h4 class="w3-center">TOP 10 POPULAR</h4><br>
+  <form method="post" enctype="multipart/form-data" action="/album">
+    <div class="w3-center">
+      {% if topTenTags %}
+      {% for tag in topTenTags %}
+      <button class="w3-tag w3-light-grey w3-medium w3-hover-opacity tag" name="clickedTag" value="{{tag[0]}}" type="submit"><h5> {{tag[0]}} {{tag[1]}} </h5></button> 
+      {% endfor %}
+      {% endif %}
+    </div>
+  </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+<script>
+      // Modal Image Gallery
+      function onClick(element) {
+        document.getElementById("img01").src = element.src;
+        document.getElementById("modal01").style.display = "block";
+        var captionText = document.getElementById("caption");
+        captionText.innerHTML = element.alt;
+      }
+
+      // Change style of navbar on scroll
+      window.onscroll = function() {myFunction()};
+      function myFunction() {
+        var navbar = document.getElementById("myNavbar");
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+          navbar.className = "w3-bar" + " w3-card-2" + " w3-animate-top" + " w3-white";
+        } else {
+          navbar.className = navbar.className.replace(" w3-card-2 w3-animate-top w3-white", "");
+        }
+      }
+
+      function likeFunction(x) {
+        x.style.fontWeight = "bold";
+        x.innerHTML = "✓ Liked";
+      }
+
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
+
+  </body>
+  </html>
+
